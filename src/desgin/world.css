@@ -1,6 +1,7 @@
-.grid { 
-    height: 10em;
-    width: 10em;
-    border: 0.2rem solid black;
-    padding: 0.2rem 0.2rem 0.2rem 0.2em;
+.grid-container {
+  display: grid;
+  padding: 0.2rem;
+  grid-template-columns: repeat(10, 5rem);
+  grid-template-rows: repeat(10, 5rem);
+  border: 0.2rem solid black;
 }

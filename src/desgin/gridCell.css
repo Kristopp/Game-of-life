@@ -1,0 +1,8 @@
+.main-grid { 
+    display: grid;
+    width: 5rem;
+    height: 5rem;
+    border: 0.1rem solid black;
+    justify-self: center;
+    align-self: center;
+}

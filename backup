@@ -1,0 +1,36 @@
+  createColumnCell() {
+    for (let _i = 0; _i < 10; _i++) {
+      const mainContainerColumn = document.getElementById(
+        "rowCell-id" + `${_i}`
+      );
+      const cell = document.createElement("div");
+      cell.className = "columnCell-name";
+      cell.id = "columnCell-id" + `${_i}`;
+      mainContainerColumn.appendChild(cell);
+    }
+  }
+
+  ------------------------
+
+   createGrid() {
+    for (let _i = 0; _i < 100; _i++) {
+      const mainContainerRow = document.getElementsByClassName(
+        "grid-container"
+      );
+      const cellRow = document.createElement("div");
+      cellRow.className = "gridCell";
+      cellRow.id = "gridCellid" + "-" + `${_i}`;
+      mainContainerRow[0].appendChild(cellRow);
+    }
+  }
+  getRandomGridCell() {
+    const getRanddomNumber: number = Math.floor(Math.random() * 100) + 1;
+    const randomCell = document.getElementById(
+      "gridCellid" + "-" + `${getRanddomNumber}`
+    );
+  }
+
+  mounted() {
+    this.createGrid();
+    this.getRandomGridCell();
+  }
