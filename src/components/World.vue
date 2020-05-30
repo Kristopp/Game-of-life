@@ -1,38 +1,52 @@
-<template>
++<template>
   <!-- main container where the magic begins -->
   <div class="grid-container" id="grid-container-id">
-    <LivingCell v-if="cellState"></LivingCell>
-    <button v-on:click="renderLivingCell" style="margin: 1rem">click</button>
+    <!--Use vue loop to create dynamic grid -->
+    <div
+      class="main-grid"
+      :class="isAlive"
+      v-for="(item, index) in gridElements"
+      :id="'gridCell' + '-' + [index]"
+      :key="item.id"
+    >
+      <!--  kui parent id  on vordne -->
+      <div 
+        class="livingCell" 
+        v-if="item === gridElements[23]" 
+        :style="[cellStyle]">
+      </div>
+    </div>
+    <button style="margin: 1rem">click</button>
   </div>
 </template>
 <style src="@/desgin/world.css" lang="css"></style>
 <style src="@/desgin/gridCell.css" lang="css"></style>
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import LivingCell from "@/components/Cell.vue";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import Cell from "@/components/Cell.vue";
 @Component({
   components: {
-    LivingCell
+    livingcell: Cell
   }
 })
 export default class World extends Vue {
-  public cellState = false;
-  _i = 0;
-  
-  /* function to create dynamic grid cells */
-  /**loop for dynamic grid */
-  createGrid() {
-    for (let _i= this.i;_i < 10; this._i++) {
-      const getGridCell = `<div class="main-grid" id=${this._i} v-for="item in this.gridId" v-bind:key="item.id">`;
-      const element: any = document.querySelector(".grid-container").insertAdjacentHTML('beforeend', getGridCell);
-      console.log(element);
+  gridElements: any = [];
+  getId = "";
+  isAlive = true;
+  cellStyle: object = {
+    margin: "auto",
+    width: "90%",
+    height: "90%",
+    backgroundColor: "black"
+  };
+
+  public createGridRow() {
+    for (let _i = 0; _i < 50; _i++) {
+      this.gridElements.push("grid-cell-id" + "-" + `${_i}`);
     }
   }
-  renderLivingCell() {
-    this.cellState = true;
-  }
   mounted() {
-    this.createGrid();
+    this.createGridRow();
   }
 }
 </script>
